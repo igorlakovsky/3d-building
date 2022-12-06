@@ -36,10 +36,11 @@ function App() {
           </>
         ) : null}
 
-        <ambientLight />
+        <ambientLight intensity={0.2} />
         <pointLight position={[10, 15, 20]} />
+        <pointLight position={[-10, 15, -20]} />
 
-        <Building position={[4, 2, 6]} />
+        <Building position={[-14, 0, 4]} />
       </Canvas>
     </div>
   )
