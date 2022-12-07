@@ -6,3 +6,19 @@ body {
   width: 100%;
   height: 100vh;
 }
+
+.three_stats {
+  display: flex;
+}
+
+.three_stats canvas:nth-child(1) {
+  display: block !important;
+}
+
+.three_stats canvas:nth-child(2) {
+  display: block !important;
+}
+
+.three_stats canvas:nth-child(3) {
+  display: block !important;
+}
