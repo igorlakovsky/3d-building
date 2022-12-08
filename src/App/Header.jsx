@@ -21,6 +21,12 @@ export default function Header() {
             <img src="img/notification.png" />
           </div>
         </div>
+        <div className="schema">
+          <div className="schema__name">Схема ООО “ЗМИ”</div>
+          <div className="schema__text">
+            Выберите интересующий вас участок завода
+          </div>
+        </div>
       </div>
     </div>
   )
