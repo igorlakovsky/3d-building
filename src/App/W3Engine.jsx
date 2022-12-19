@@ -3,13 +3,17 @@ import {
   GizmoViewport,
   OrbitControls,
   PerspectiveCamera,
+  Plane,
   Stats,
 } from '@react-three/drei'
 import { Leva, button, folder, useControls } from 'leva'
 import React, { useEffect, useRef } from 'react'
 
+// eslint-disable-next-line no-unused-vars
 import Building from './Building'
 import { Canvas } from '@react-three/fiber'
+// eslint-disable-next-line no-unused-vars
+import { Factory } from './Factory'
 import PointLightW3E from './PointLightW3E'
 import PropTypes from 'prop-types'
 
@@ -40,7 +44,7 @@ function W3Engine({ debug = false }) {
         hidden={!debug}
       />
 
-      <Canvas>
+      <Canvas shadows>
         <PerspectiveCamera position={[-50, 50, -50]} makeDefault />
         <OrbitControls enableZoom={true} ref={cameraControlRef} />
 
@@ -62,10 +66,25 @@ function W3Engine({ debug = false }) {
         {stats ? <Stats className="three_stats" /> : null}
 
         {/* <ambientLight intensity={0.2} /> */}
-        <PointLightW3E props={{ position: [30, 50, 30] }} helper={light} />
-        <PointLightW3E props={{ position: [-40, 10, -40] }} helper={light} />
+        {/* <PointLightW3E
+          props={{ position: [0, 50, 0], intensity: 1 }}
+          helper={light}
+        /> */}
+        <PointLightW3E
+          props={{ position: [-30, 40, -40], intensity: 1 }}
+          helper={light}
+        />
 
-        <Building position={[-20, 0, 5]} />
+        {/* <Building position={[-20, 0, 5]} /> */}
+        <Plane
+          args={[40, 80]}
+          position={[0, -0.1, 0]}
+          rotation={[-3.14 / 2, 0, 0]}
+          receiveShadow
+        >
+          <meshStandardMaterial color={'white'} />
+        </Plane>
+        <Factory scale={[0.25, 0.25, 0.25]} rotation={[0, 3.14, 0]} />
       </Canvas>
     </div>
   )

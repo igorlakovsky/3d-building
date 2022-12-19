@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <W3Engine debug={true} />
+      <W3Engine debug={false} />
     </div>
   )
 }
