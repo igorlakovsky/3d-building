@@ -1,12 +1,12 @@
 import Header from './App/Header'
 import React from 'react'
-import W3Engine from './App/W3Engine'
+import Web3dEngine from './App/Web3d/Web3dEngine'
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <W3Engine debug={false} />
+      <Web3dEngine debug />
     </div>
   )
 }

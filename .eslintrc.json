@@ -65,6 +65,7 @@
     "react/require-extension": 0,
     "react/self-closing-comp": 2,
     "react/sort-comp": 1,
-    "react/wrap-multilines": 0
+    "react/wrap-multilines": 0,
+    "no-unused-vars": "warn"
   }
 }

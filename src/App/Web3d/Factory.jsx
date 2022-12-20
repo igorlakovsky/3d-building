@@ -7,10 +7,6 @@ export function Factory(props) {
   const { nodes } = useGLTF('/factory.glb')
   const [activeWorkshop, setActiveWorkshop] = useState(0)
 
-  useEffect(() => {
-    console.log(activeWorkshop)
-  }, [activeWorkshop])
-
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -156,6 +152,7 @@ export function Factory(props) {
           e.stopPropagation()
           setActiveWorkshop(1)
         }}
+        onPointerOut={() => setActiveWorkshop(0)}
       >
         <meshBasicMaterial transparent={true} opacity={0} />
       </mesh>
@@ -167,6 +164,7 @@ export function Factory(props) {
           e.stopPropagation()
           setActiveWorkshop(2)
         }}
+        onPointerOut={() => setActiveWorkshop(0)}
       >
         <meshBasicMaterial transparent={true} opacity={0} />
       </mesh>
@@ -178,6 +176,7 @@ export function Factory(props) {
           e.stopPropagation()
           setActiveWorkshop(3)
         }}
+        onPointerOut={() => setActiveWorkshop(0)}
       >
         <meshBasicMaterial transparent={true} opacity={0} />
       </mesh>
@@ -189,6 +188,7 @@ export function Factory(props) {
           e.stopPropagation()
           setActiveWorkshop(4)
         }}
+        onPointerOut={() => setActiveWorkshop(0)}
       >
         <meshBasicMaterial transparent={true} opacity={0} />
       </mesh>
