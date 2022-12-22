@@ -1,0 +1,42 @@
+export const cameraPosition = {
+  general: {
+    x: -35,
+    y: 53,
+    z: -60,
+    rotateX: -2.32,
+    rotateY: -0.54,
+    rotateZ: -2.63,
+  },
+  workshop_1: {
+    x: 1,
+    y: 45,
+    z: -10,
+    rotateX: -Math.PI / 2,
+    rotateY: 0,
+    rotateZ: -Math.PI / 2,
+  },
+  workshop_2: {
+    x: -4,
+    y: 30,
+    z: 24,
+    rotateX: -Math.PI / 2,
+    rotateY: 0,
+    rotateZ: -Math.PI / 2,
+  },
+  workshop_3: {
+    x: 10,
+    y: 25,
+    z: -7,
+    rotateX: -Math.PI / 2,
+    rotateY: 0,
+    rotateZ: -Math.PI / 2,
+  },
+  workshop_4: {
+    x: 6,
+    y: 30,
+    z: 24,
+    rotateX: -Math.PI / 2,
+    rotateY: 0,
+    rotateZ: -Math.PI / 2,
+  },
+}

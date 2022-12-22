@@ -1,12 +1,12 @@
 import Header from './App/Header'
 import React from 'react'
-import Web3dEngine from './App/Web3d/Web3dEngine'
+import View3d from './App/View3d/View3d'
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Web3dEngine debug={false} />
+      <View3d debug />
     </div>
   )
 }

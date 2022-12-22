@@ -11,17 +11,16 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
   return (
     <>
       <Plane
-        args={[100, 100]}
+        args={[150, 150]}
         position={[0, -0.1, 0]}
         rotation={[-3.14 / 2, 0, 0]}
+        visible={false}
         receiveShadow
         onClick={(e) => {
           e.stopPropagation()
           setActiveWorkshop('general')
         }}
-      >
-        <meshStandardMaterial color={'white'} />
-      </Plane>
+      />
       <group {...props} dispose={null}>
         <mesh
           name="Walls"
@@ -43,7 +42,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
           scale={[0.75, 0.7, 0.5]}
           animate={[selectionAnimation, activeWorkshop]}
           variants={{
-            workshop_1_selected: { y: 40 },
+            workshop_1_selected: { y: 45 },
             workshop_1: { y: 200 },
           }}
         >
@@ -61,7 +60,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
           scale={[0.75, 0.7, 0.5]}
           animate={[selectionAnimation, activeWorkshop]}
           variants={{
-            workshop_1_selected: { y: 30 },
+            workshop_1_selected: { y: 35 },
             workshop_1: { y: 200 },
           }}
         >
@@ -79,7 +78,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
           scale={[0.75, 0.7, 0.5]}
           animate={[selectionAnimation, activeWorkshop]}
           variants={{
-            workshop_1_selected: { y: 40 },
+            workshop_1_selected: { y: 45 },
             workshop_1: { y: 200 },
           }}
         >
@@ -97,7 +96,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
           scale={[0.75, 0.7, 0.5]}
           animate={[selectionAnimation, activeWorkshop]}
           variants={{
-            workshop_1_selected: { y: 35 },
+            workshop_1_selected: { y: 40 },
             workshop_1: { y: 200 },
           }}
         >
@@ -115,7 +114,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
           position={[15.34, 20.87, -98.61]}
           scale={[0.75, 0.7, 0.5]}
           animate={[selectionAnimation, activeWorkshop]}
-          variants={{ workshop_2_selected: { y: 40 }, workshop_2: { y: 200 } }}
+          variants={{ workshop_2_selected: { y: 45 }, workshop_2: { y: 200 } }}
         >
           <motion.meshStandardMaterial
             initial={{ color: 'white' }}
@@ -132,7 +131,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
           scale={[0.75, 0.7, 0.5]}
           animate={[selectionAnimation, activeWorkshop]}
           variants={{
-            workshop_3_selected: { y: 30 },
+            workshop_3_selected: { y: 35 },
             workshop_3: { y: 200 },
           }}
         >
@@ -150,7 +149,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
           scale={[0.75, 0.7, 0.5]}
           animate={[selectionAnimation, activeWorkshop]}
           variants={{
-            workshop_3_selected: { y: 40 },
+            workshop_3_selected: { y: 45 },
             workshop_3: { y: 200 },
           }}
         >
@@ -168,7 +167,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
           position={[-30.5, 16.8, -98.61]}
           scale={[0.75, 0.7, 0.5]}
           animate={[selectionAnimation, activeWorkshop]}
-          variants={{ workshop_4_selected: { y: 35 }, workshop_4: { y: 200 } }}
+          variants={{ workshop_4_selected: { y: 40 }, workshop_4: { y: 200 } }}
         >
           <motion.meshStandardMaterial
             initial={{ color: 'white' }}
@@ -180,6 +179,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
           name="Workshop_1"
           geometry={nodes.Workshop_1.geometry}
           position={[-9.58, 10.49, 40.78]}
+          visible={false}
           onPointerOver={(e) => {
             e.stopPropagation()
             setSelectionAnimation('workshop_1_selected')
@@ -189,13 +189,12 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             e.stopPropagation()
             setActiveWorkshop('workshop_1')
           }}
-        >
-          <meshBasicMaterial transparent={true} opacity={0} />
-        </mesh>
+        />
         <mesh
           name="Workshop_2"
           geometry={nodes.Workshop_2.geometry}
           position={[15.84, 10.71, -98.13]}
+          visible={false}
           onPointerOver={(e) => {
             e.stopPropagation()
             setSelectionAnimation('workshop_2_selected')
@@ -205,13 +204,12 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             e.stopPropagation()
             setActiveWorkshop('workshop_2')
           }}
-        >
-          <meshBasicMaterial transparent={true} opacity={0} />
-        </mesh>
+        />
         <mesh
           name="Workshop_3"
           geometry={nodes.Workshop_3.geometry}
           position={[-39.14, 10.52, 33.78]}
+          visible={false}
           onPointerOver={(e) => {
             e.stopPropagation()
             setSelectionAnimation('workshop_3_selected')
@@ -221,13 +219,12 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             e.stopPropagation()
             setActiveWorkshop('workshop_3')
           }}
-        >
-          <meshBasicMaterial transparent={true} opacity={0} />
-        </mesh>
+        />
         <mesh
           name="Workshop_4"
           geometry={nodes.Workshop_4.geometry}
           position={[-30, 10.73, -98.13]}
+          visible={false}
           onPointerOver={(e) => {
             e.stopPropagation()
             setSelectionAnimation('workshop_4_selected')
@@ -237,9 +234,7 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             e.stopPropagation()
             setActiveWorkshop('workshop_4')
           }}
-        >
-          <meshBasicMaterial transparent={true} opacity={0} />
-        </mesh>
+        />
       </group>
     </>
   )

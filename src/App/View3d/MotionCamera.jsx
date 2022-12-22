@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion-3d'
 import { useThree } from '@react-three/fiber'
 
-function Web3dMotionCamera(props) {
+function MotionCamera(props) {
   const cameraRef = useRef()
   const set = useThree((state) => state.set)
   const size = useThree((state) => state.size)
@@ -22,4 +22,4 @@ function Web3dMotionCamera(props) {
   return <motion.perspectiveCamera ref={cameraRef} {...props} />
 }
 
-export default Web3dMotionCamera
+export default MotionCamera
