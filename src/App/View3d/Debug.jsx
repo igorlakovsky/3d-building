@@ -16,6 +16,7 @@ function Debug({ grid, light, lightRef, stats, camera_control }) {
           cellSize={3}
           sectionSize={6}
           sectionColor={'#ff6000'}
+          fadeDistance={150}
           infiniteGrid
         />
       ) : null}

@@ -1,8 +1,8 @@
+import { ContactShadows, PivotControls, Text3D } from '@react-three/drei'
 import { Leva, button, folder, useControls } from 'leva'
 import React, { useEffect, useRef, useState } from 'react'
 
 import { Canvas } from '@react-three/fiber'
-import { ContactShadows } from '@react-three/drei'
 import Debug from './Debug'
 import { Factory } from './Factory'
 import MotionCamera from './MotionCamera'
@@ -13,8 +13,8 @@ function View3d({ debug = false }) {
   const [activeWorkshop, setActiveWorkshop] = useState('general')
   const lightRef = useRef()
 
-  const [{ grid, stats, light, camera_control }, setDebug] = useControls(
-    () => ({
+  const [{ grid, stats, light, camera_control, rotX, rotY, rotZ }, setDebug] =
+    useControls(() => ({
       camera_position: folder({
         general: button(() => {
           setActiveWorkshop('general')
@@ -38,8 +38,25 @@ function View3d({ debug = false }) {
         stats: debug,
         camera_control: false,
       }),
-    })
-  )
+      rotX: {
+        value: 0,
+        min: -Math.PI,
+        max: Math.PI,
+        step: 0.01,
+      },
+      rotY: {
+        value: 0,
+        min: -Math.PI,
+        max: Math.PI,
+        step: 0.01,
+      },
+      rotZ: {
+        value: 0,
+        min: -Math.PI,
+        max: Math.PI,
+        step: 0.01,
+      },
+    }))
 
   useEffect(() => {
     setDebug({ grid: debug, light: debug, stats: debug })
@@ -85,6 +102,17 @@ function View3d({ debug = false }) {
           activeWorkshop={activeWorkshop}
           setActiveWorkshop={setActiveWorkshop}
         />
+
+        <Text3D
+          font="/Inter_Bold.json"
+          position={[-6, 10, -30]}
+          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+          scale={3}
+          height={0.01}
+        >
+          Цех №1
+          <meshStandardMaterial color={'green'} />
+        </Text3D>
       </Canvas>
     </div>
   )
