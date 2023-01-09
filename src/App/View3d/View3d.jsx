@@ -1,4 +1,4 @@
-import { ContactShadows, PivotControls, Text3D } from '@react-three/drei'
+import { ContactShadows, PivotControls } from '@react-three/drei'
 import { Leva, button, folder, useControls } from 'leva'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -63,7 +63,7 @@ function View3d({ debug = false }) {
   }, [debug])
 
   return (
-    <div className="web3d">
+    <div className="view3d">
       <Leva
         titleBar={{ drag: false, filter: false }}
         hideCopyButton
@@ -102,17 +102,6 @@ function View3d({ debug = false }) {
           activeWorkshop={activeWorkshop}
           setActiveWorkshop={setActiveWorkshop}
         />
-
-        <Text3D
-          font="/Inter_Bold.json"
-          position={[-6, 10, -30]}
-          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-          scale={3}
-          height={0.01}
-        >
-          Цех №1
-          <meshStandardMaterial color={'green'} />
-        </Text3D>
       </Canvas>
     </div>
   )

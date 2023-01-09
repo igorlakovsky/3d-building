@@ -106,6 +106,7 @@ body {
   line-height: 22px;
 
   color: #f99723;
+  /* color: #aaaaaa; */
 }
 
 .leva-c-kWgxhW-bCBHqk-fill-false {
@@ -113,6 +114,6 @@ body {
   top: 110px !important;
 }
 
-.web3d {
+.view3d {
   flex-grow: 1;
 }
