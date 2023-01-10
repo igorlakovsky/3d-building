@@ -1,4 +1,4 @@
-import { Plane, Text3D, useGLTF } from '@react-three/drei'
+import { Plane, useGLTF } from '@react-three/drei'
 import React, { useEffect, useState } from 'react'
 
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
@@ -10,7 +10,7 @@ import { useLoader } from '@react-three/fiber'
 
 extend({ TextGeometry })
 
-export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
+export function Model({ props, activeWorkshop, setActiveWorkshop }) {
   const { nodes } = useGLTF('/factory.glb')
   const font = useLoader(FontLoader, '/Inter_Bold.json')
   const [selectionAnimation, setSelectionAnimation] = useState('none')
@@ -53,12 +53,16 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_1_selected: { y: 25 },
-              workshop_1: { y: 200 },
+              workshop_1: { y: 25 },
             }}
           >
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#ffffff' }}
-              variants={{ workshop_1_selected: { color: '#ffa500' } }}
+              variants={{
+                workshop_1_selected: { color: '#ffa500' },
+                workshop_1: { opacity: 0 },
+              }}
             />
           </motion.mesh>
           <motion.mesh
@@ -71,12 +75,16 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_1_selected: { y: 11 },
-              workshop_1: { y: 200 },
+              workshop_1: { y: 20 },
             }}
           >
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#ffffff' }}
-              variants={{ workshop_1_selected: { color: '#ffa500' } }}
+              variants={{
+                workshop_1_selected: { color: '#ffa500' },
+                workshop_1: { opacity: 0 },
+              }}
             />
           </motion.mesh>
           <motion.mesh
@@ -89,12 +97,16 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_1_selected: { y: 25 },
-              workshop_1: { y: 200 },
+              workshop_1: { y: 25 },
             }}
           >
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#ffffff' }}
-              variants={{ workshop_1_selected: { color: '#ffa500' } }}
+              variants={{
+                workshop_1_selected: { color: '#ffa500' },
+                workshop_1: { opacity: 0 },
+              }}
             />
           </motion.mesh>
           <motion.mesh
@@ -107,12 +119,16 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_1_selected: { y: 19 },
-              workshop_1: { y: 200 },
+              workshop_1: { y: 25 },
             }}
           >
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#ffffff' }}
-              variants={{ workshop_1_selected: { color: '#ffa500' } }}
+              variants={{
+                workshop_1_selected: { color: '#ffa500' },
+                workshop_1: { opacity: 0 },
+              }}
             />
           </motion.mesh>
           <motion.mesh
@@ -121,13 +137,17 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_1_selected: { y: 28 },
-              workshop_1: { y: 200 },
+              workshop_1: { y: 32 },
             }}
           >
             <textGeometry args={['Цех №1', { font, size: 14, height: 0.1 }]} />
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#aaaaaa' }}
-              variants={{ workshop_1_selected: { color: '#000000' } }}
+              variants={{
+                workshop_1_selected: { color: '#000000' },
+                workshop_1: { opacity: 0 },
+              }}
             />
           </motion.mesh>
 
@@ -141,12 +161,16 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_2_selected: { y: 25 },
-              workshop_2: { y: 200 },
+              workshop_2: { y: 25 },
             }}
           >
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#ffffff' }}
-              variants={{ workshop_2_selected: { color: '#ffa500' } }}
+              variants={{
+                workshop_2_selected: { color: '#ffa500' },
+                workshop_2: { opacity: 0 },
+              }}
             />
           </motion.mesh>
           <motion.mesh
@@ -155,13 +179,17 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_2_selected: { y: 28 },
-              workshop_2: { y: 200 },
+              workshop_2: { y: 32 },
             }}
           >
             <textGeometry args={['Цех №2', { font, size: 10, height: 0.1 }]} />
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#aaaaaa' }}
-              variants={{ workshop_2_selected: { color: '#000000' } }}
+              variants={{
+                workshop_2_selected: { color: '#000000' },
+                workshop_2: { opacity: 0 },
+              }}
             />
           </motion.mesh>
 
@@ -175,12 +203,16 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_3_selected: { y: 15 },
-              workshop_3: { y: 200 },
+              workshop_3: { y: 20 },
             }}
           >
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#ffffff' }}
-              variants={{ workshop_3_selected: { color: '#ffa500' } }}
+              variants={{
+                workshop_3_selected: { color: '#ffa500' },
+                workshop_3: { opacity: 0 },
+              }}
             />
           </motion.mesh>
           <motion.mesh
@@ -193,12 +225,16 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_3_selected: { y: 25 },
-              workshop_3: { y: 200 },
+              workshop_3: { y: 25 },
             }}
           >
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#ffffff' }}
-              variants={{ workshop_3_selected: { color: '#ffa500' } }}
+              variants={{
+                workshop_3_selected: { color: '#ffa500' },
+                workshop_3: { opacity: 0 },
+              }}
             />
           </motion.mesh>
           <motion.mesh
@@ -207,13 +243,17 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_3_selected: { y: 28 },
-              workshop_3: { y: 200 },
+              workshop_3: { y: 32 },
             }}
           >
             <textGeometry args={['Цех №3', { font, size: 8, height: 0.1 }]} />
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#aaaaaa' }}
-              variants={{ workshop_3_selected: { color: '#000000' } }}
+              variants={{
+                workshop_3_selected: { color: '#000000' },
+                workshop_3: { opacity: 0 },
+              }}
             />
           </motion.mesh>
 
@@ -227,12 +267,16 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_4_selected: { y: 20 },
-              workshop_4: { y: 200 },
+              workshop_4: { y: 20 },
             }}
           >
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#ffffff' }}
-              variants={{ workshop_4_selected: { color: '#ffa500' } }}
+              variants={{
+                workshop_4_selected: { color: '#ffa500' },
+                workshop_4: { opacity: 0 },
+              }}
             />
           </motion.mesh>
           <motion.mesh
@@ -241,13 +285,17 @@ export function Factory({ props, activeWorkshop, setActiveWorkshop }) {
             animate={[selectionAnimation, activeWorkshop]}
             variants={{
               workshop_4_selected: { y: 28 },
-              workshop_4: { y: 200 },
+              workshop_4: { y: 32 },
             }}
           >
             <textGeometry args={['Цех №4', { font, size: 8, height: 0.1 }]} />
             <motion.meshStandardMaterial
+              transparent
               initial={{ color: '#aaaaaa' }}
-              variants={{ workshop_4_selected: { color: '#000000' } }}
+              variants={{
+                workshop_4_selected: { color: '#000000' },
+                workshop_4: { opacity: 0 },
+              }}
             />
           </motion.mesh>
 

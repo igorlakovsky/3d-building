@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { useHelper } from '@react-three/drei'
 
-function Debug({ grid, light, lightRef, stats, camera_control }) {
+function Debug({ grid, light, stats, cameraControl, lightRef, view3dRef }) {
   useHelper(light ? lightRef : false, DirectionalLightHelper, 2, 'black')
 
   return (
@@ -20,8 +20,8 @@ function Debug({ grid, light, lightRef, stats, camera_control }) {
           infiniteGrid
         />
       ) : null}
-      {camera_control ? <OrbitControls /> : null}
-      {stats ? <Stats className="three_stats" /> : null}
+      {cameraControl ? <OrbitControls /> : null}
+      {stats ? <Stats className="three_stats" parent={view3dRef} /> : null}
     </>
   )
 }
@@ -30,6 +30,9 @@ Debug.propTypes = {
   grid: PropTypes.bool,
   stats: PropTypes.bool,
   light: PropTypes.bool,
+  cameraControl: PropTypes.bool,
+  lightRef: PropTypes.shape({ current: PropTypes.object }),
+  view3dRef: PropTypes.shape({ current: PropTypes.object }),
 }
 
 export default Debug
