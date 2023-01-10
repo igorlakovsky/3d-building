@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <View3d debug={true} />
+      <View3d debug={false} />
     </div>
   )
 }

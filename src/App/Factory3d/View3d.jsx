@@ -52,6 +52,16 @@ function View3d({ debug = false }) {
 
   return (
     <div ref={view3dRef} className="view3d">
+      <div
+        className="view3d__title"
+        style={activeWorkshop != 'general' ? { opacity: 0 } : { opacity: 1 }}
+      >
+        <div className="view3d__title__name">Схема ООО “ЗМИ”</div>
+        <div className="view3d__title__text">
+          Выберите интересующий вас участок завода
+        </div>
+      </div>
+
       <div className="view3d__viewport" ref={viewportRef} />
       <motion.div
         className="view3d__panel"
@@ -60,7 +70,7 @@ function View3d({ debug = false }) {
         variants={{ open: { width: 400 }, close: { width: 0 } }}
         transition={{ duration: 0.3 }}
       >
-        <Panel />
+        <Panel activeWorkshop={activeWorkshop} />
       </motion.div>
 
       <Leva
