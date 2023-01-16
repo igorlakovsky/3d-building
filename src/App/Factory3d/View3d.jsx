@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { Canvas } from '@react-three/fiber'
 import Debug from './Debug'
-import { Model } from './Model'
+import { Factory } from './Factory'
 import MotionCamera from './MotionCamera'
 import Panel from './Panel'
 import PropTypes from 'prop-types'
@@ -99,12 +99,15 @@ function View3d({ debug = false }) {
             <pointLight position={[0, 0, 0]} intensity={0.3} distance={600} />
           </MotionCamera>
 
-          <directionalLight ref={lightRef} position={[-15, 40, -55]} />
+          <directionalLight ref={lightRef} position={[-25, 60, -20]} />
 
-          <ContactShadows width={8} height={8} opacity={1.2} far={5} />
+          <ContactShadows width={12} height={12} opacity={1.2} far={4} />
 
-          <Model
-            props={{ scale: [0.25, 0.25, 0.25], rotation: [0, Math.PI, 0] }}
+          <Factory
+            props={{
+              scale: [0.25, 0.25, 0.25],
+              rotation: [0, Math.PI - 0.1, 0],
+            }}
             activeWorkshop={activeWorkshop}
             setActiveWorkshop={setActiveWorkshop}
           />
