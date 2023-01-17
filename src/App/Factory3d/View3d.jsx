@@ -13,6 +13,7 @@ import { motion } from 'framer-motion'
 
 function View3d({ debug = false }) {
   const [activeWorkshop, setActiveWorkshop] = useState('general')
+  const [activeFloor, setActiveFloor] = useState('none')
 
   const lightRef = useRef()
   const view3dRef = useRef()
@@ -65,12 +66,12 @@ function View3d({ debug = false }) {
       <div className="view3d__viewport" ref={viewportRef} />
       <motion.div
         className="view3d__panel"
-        animate={activeWorkshop != 'general' ? 'open' : 'close'}
+        animate={activeFloor != 'none' ? 'open' : 'close'}
         initial={{ width: 0 }}
         variants={{ open: { width: 400 }, close: { width: 0 } }}
         transition={{ duration: 0.3 }}
       >
-        <Panel activeWorkshop={activeWorkshop} />
+        <Panel activeFloor={activeFloor} />
       </motion.div>
 
       <Leva
@@ -101,7 +102,13 @@ function View3d({ debug = false }) {
 
           <directionalLight ref={lightRef} position={[-25, 60, -20]} />
 
-          <ContactShadows width={12} height={12} opacity={1.2} far={4} />
+          <ContactShadows
+            width={12}
+            height={12}
+            opacity={1.2}
+            far={4}
+            frames={1}
+          />
 
           <Factory
             props={{
@@ -110,6 +117,8 @@ function View3d({ debug = false }) {
             }}
             activeWorkshop={activeWorkshop}
             setActiveWorkshop={setActiveWorkshop}
+            activeFloor={activeFloor}
+            setActiveFloor={setActiveFloor}
           />
         </View>
       </Canvas>

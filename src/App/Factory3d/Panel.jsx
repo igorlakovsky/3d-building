@@ -24,12 +24,12 @@ function MachineInfo() {
   )
 }
 
-export default function Panel({ activeWorkshop }) {
+export default function Panel({ activeFloor }) {
   return (
     <div className="view3d__panel__container">
       <div className="view3d__panel__header">
         <div className="view3d__panel__title">
-          <div className="view3d__panel__title__name">Радуга</div>
+          <div className="view3d__panel__title__name">{activeFloor}</div>
           <div className="view3d__panel__title__info">
             <img src="img/info.svg" />
           </div>
