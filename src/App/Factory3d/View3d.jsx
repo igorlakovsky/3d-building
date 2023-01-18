@@ -102,13 +102,13 @@ function View3d({ debug = false }) {
 
           <directionalLight ref={lightRef} position={[-25, 60, -20]} />
 
-          <ContactShadows
+          {/* <ContactShadows
             width={12}
             height={12}
             opacity={1.2}
             far={4}
             frames={1}
-          />
+          /> */}
 
           <Factory
             props={{

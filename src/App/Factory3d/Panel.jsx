@@ -44,7 +44,7 @@ export default function Panel({ activeSectorId }) {
         <div className="view3d__panel__header">
           <div className="view3d__panel__title">
             <div className="view3d__panel__title__name">
-              {machinesData?.name}
+              {machinesData?.sector}
             </div>
             <div className="view3d__panel__title__info">
               <img src="img/info.svg" />

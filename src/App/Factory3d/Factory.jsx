@@ -36,6 +36,8 @@ export function Factory({
   const selectedColor = '#ffa500'
   const activeColor = '#ffffff'
   const inactiveColor = '#b9b9b9'
+  const textColor = '#4d4d4d'
+  const textSelectedColor = '#000000'
 
   useEffect(() => {
     if (activeDepartment == 'general')
@@ -208,9 +210,9 @@ export function Factory({
             <textGeometry args={['Цех №1', { font, size: 16, height: 0.1 }]} />
             <motion.meshStandardMaterial
               transparent
-              initial={{ color: '#4d4d4d' }}
+              initial={{ color: textColor }}
               variants={{
-                department_1_selected: { color: '#000000' },
+                department_1_selected: { color: textSelectedColor },
                 department_1: { opacity: 0 },
                 department_2: { opacity: 0 },
                 department_3: { opacity: 0 },
@@ -231,9 +233,9 @@ export function Factory({
             <textGeometry args={['Цех №2', { font, size: 10, height: 0.1 }]} />
             <motion.meshStandardMaterial
               transparent
-              initial={{ color: '#4d4d4d' }}
+              initial={{ color: textColor }}
               variants={{
-                department_2_selected: { color: '#000000' },
+                department_2_selected: { color: textSelectedColor },
                 department_1: { opacity: 0 },
                 department_2: { opacity: 0 },
                 department_3: { opacity: 0 },
@@ -254,9 +256,9 @@ export function Factory({
             <textGeometry args={['Цех №3', { font, size: 10, height: 0.1 }]} />
             <motion.meshStandardMaterial
               transparent
-              initial={{ color: '#4d4d4d' }}
+              initial={{ color: textColor }}
               variants={{
-                department_3_selected: { color: '#000000' },
+                department_3_selected: { color: textSelectedColor },
                 department_1: { opacity: 0 },
                 department_2: { opacity: 0 },
                 department_3: { opacity: 0 },
@@ -277,9 +279,9 @@ export function Factory({
             <textGeometry args={['Цех №4', { font, size: 8, height: 0.1 }]} />
             <motion.meshStandardMaterial
               transparent
-              initial={{ color: '#4d4d4d' }}
+              initial={{ color: textColor }}
               variants={{
-                department_4_selected: { color: '#000000' },
+                department_4_selected: { color: textSelectedColor },
                 department_1: { opacity: 0 },
                 department_2: { opacity: 0 },
                 department_3: { opacity: 0 },
@@ -577,6 +579,260 @@ export function Factory({
               variants={{
                 sector_41: { color: selectedColor },
                 sector_41_active: { color: selectColor },
+              }}
+            />
+          </motion.mesh>
+
+          <motion.mesh
+            name="Label_11"
+            position={[-25, 5, -9]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_11: { y: 5 },
+              sector_11_active: { y: 30, z: -6 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №1', { font, size: 4, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_11: { color: textSelectedColor },
+                sector_11_active: { color: textSelectedColor },
+                department_1: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_12"
+            position={[-10, 5, 66]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_12: { y: 5 },
+              sector_12_active: { y: 30, z: 64 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №2', { font, size: 4, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_12: { color: textSelectedColor },
+                sector_12_active: { color: textSelectedColor },
+                department_1: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_13"
+            position={[27, 5, 108]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_13: { y: 5 },
+              sector_13_active: { x: 24, y: 30, z: 100 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №3', { font, size: 6, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_13: { color: textSelectedColor },
+                sector_13_active: { color: textSelectedColor },
+                department_1: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_14_1"
+            position={[-25, 5, 15]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_14: { y: 5 },
+              sector_14_active: { y: 30, z: 15 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №4', { font, size: 5, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_14: { color: textSelectedColor },
+                sector_14_active: { color: textSelectedColor },
+                department_1: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_14_2"
+            position={[24, 5, -29]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_14: { y: 5 },
+              sector_14_active: { x: 21, y: 30, z: -24 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №4', { font, size: 3, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_14: { color: textSelectedColor },
+                sector_14_active: { color: textSelectedColor },
+                department_1: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_21"
+            position={[12, 5, -82]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_21: { y: 5 },
+              sector_21_active: { x: 12, y: 30, z: -82 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №1', { font, size: 6, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_21: { color: textSelectedColor },
+                sector_21_active: { color: textSelectedColor },
+                department_2: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_31"
+            position={[-166, 5, 124]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 4]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_31: { y: 5 },
+              sector_31_active: { x: -163, y: 30, z: 122 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №1', { font, size: 4.5, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_31: { color: textSelectedColor },
+                sector_31_active: { color: textSelectedColor },
+                department_3: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_32"
+            position={[-126, 5, 82]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 4]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_32: { y: 5 },
+              sector_32_active: { x: -126, y: 30, z: 82 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №2', { font, size: 4.5, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_32: { color: textSelectedColor },
+                sector_32_active: { color: textSelectedColor },
+                department_3: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_33"
+            position={[-40, 5, 70]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_33: { y: 5 },
+              sector_33_active: { x: -45, y: 30, z: 70 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №3', { font, size: 4, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_33: { color: textSelectedColor },
+                sector_33_active: { color: textSelectedColor },
+                department_3: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_41_1"
+            position={[-29, 5, -84]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_41: { y: 5 },
+              sector_41_active: { x: -28, y: 30, z: -78 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №1', { font, size: 5, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_41: { color: textSelectedColor },
+                sector_41_active: { color: textSelectedColor },
+                department_4: { opacity: 1 },
+              }}
+            />
+          </motion.mesh>
+          <motion.mesh
+            name="Label_41_2"
+            position={[-25, 5, 90]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            animate={[selectedSector, activeSector, activeDepartment]}
+            variants={{
+              sector_41: { y: 5 },
+              sector_41_active: { x: -25, y: 30, z: 78 },
+            }}
+          >
+            <textGeometry
+              args={['Участок №1', { font, size: 2.8, height: 0.1 }]}
+            />
+            <motion.meshStandardMaterial
+              transparent
+              initial={{ color: textColor, opacity: 0 }}
+              variants={{
+                sector_41: { color: textSelectedColor },
+                sector_41_active: { color: textSelectedColor },
+                department_4: { opacity: 1 },
               }}
             />
           </motion.mesh>
