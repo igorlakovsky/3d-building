@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import { Spin } from 'antd'
 import { getMachines } from './api'
 
 function MachineInfo({ name, status }) {
@@ -23,45 +24,55 @@ function MachineInfo({ name, status }) {
 }
 
 export default function Panel({ activeSectorId }) {
-  const [machinesData, setMachinesData] = useState([])
+  const [machinesData, setMachinesData] = useState(null)
 
   useEffect(() => {
     if (activeSectorId != undefined) {
+      setMachinesData(null)
       getMachines(setMachinesData, activeSectorId)
     }
   }, [activeSectorId])
 
-  // useEffect(() => {
-  //   console.log(machinesData)
-  // }, [machinesData])
-
   return (
     <div className="view3d__panel__container">
-      <div className="view3d__panel__header">
-        <div className="view3d__panel__title">
-          <div className="view3d__panel__title__name">{machinesData.name}</div>
-          <div className="view3d__panel__title__info">
-            <img src="img/info.svg" />
+      <Spin
+        tip="Загрузка"
+        size="large"
+        spinning={machinesData == null}
+        wrapperClassName="view3d__panel__spin"
+      >
+        <div className="view3d__panel__header">
+          <div className="view3d__panel__title">
+            <div className="view3d__panel__title__name">
+              {machinesData?.name}
+            </div>
+            <div className="view3d__panel__title__info">
+              <img src="img/info.svg" />
+            </div>
+          </div>
+          <div className="view3d__panel__indicators">
+            <div className="view3d__panel__green_indicator">
+              <img src="img/green_indicator.png" />
+              {29}
+            </div>
+            <div className="view3d__panel__red_indicator">
+              <img src="img/red_indicator.png" />
+              {5}
+            </div>
           </div>
         </div>
-        <div className="view3d__panel__indicators">
-          <div className="view3d__panel__green_indicator">
-            <img src="img/green_indicator.png" />
-            {29}
-          </div>
-          <div className="view3d__panel__red_indicator">
-            <img src="img/red_indicator.png" />
-            {5}
-          </div>
+        <div className="view3d__panel__machines">
+          {machinesData?.machines?.map((value, index) => {
+            return (
+              <MachineInfo
+                name={value.name}
+                status={value.status}
+                key={index}
+              />
+            )
+          })}
         </div>
-      </div>
-      <div className="view3d__panel__machines">
-        {machinesData?.machines?.map((value, index) => {
-          return (
-            <MachineInfo name={value.name} status={value.status} key={index} />
-          )
-        })}
-      </div>
+      </Spin>
     </div>
   )
 }

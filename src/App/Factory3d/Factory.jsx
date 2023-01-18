@@ -26,6 +26,7 @@ export function Factory({
   const [activeSector, setActiveSector] = useState('none')
 
   const [departmentsData, setDepartmentsData] = useState([])
+  const [departmentsDataStatus, setDepartmentsDataStatus] = useState('idle')
   const [sectorData, setSectorData] = useState([])
 
   const font = useLoader(FontLoader, '/Inter_Bold.json')
@@ -37,15 +38,19 @@ export function Factory({
   const inactiveColor = '#b9b9b9'
 
   useEffect(() => {
-    if (activeDepartment == 'general') getDepartments(setDepartmentsData)
-    if (activeDepartment == 'department_1')
-      getSectors(setSectorData, findId(departmentsData.departments, 'цех №1'))
-    if (activeDepartment == 'department_2')
-      getSectors(setSectorData, findId(departmentsData.departments, 'цех №2'))
-    if (activeDepartment == 'department_3')
-      getSectors(setSectorData, findId(departmentsData.departments, 'цех №3'))
-    if (activeDepartment == 'department_4')
-      getSectors(setSectorData, findId(departmentsData.departments, 'цех №4'))
+    if (activeDepartment == 'general')
+      getDepartments(setDepartmentsData, setDepartmentsDataStatus)
+
+    if (departmentsDataStatus == 'success') {
+      if (activeDepartment == 'department_1')
+        getSectors(setSectorData, findId(departmentsData.departments, 'цех №1'))
+      if (activeDepartment == 'department_2')
+        getSectors(setSectorData, findId(departmentsData.departments, 'цех №2'))
+      if (activeDepartment == 'department_3')
+        getSectors(setSectorData, findId(departmentsData.departments, 'цех №3'))
+      if (activeDepartment == 'department_4')
+        getSectors(setSectorData, findId(departmentsData.departments, 'цех №4'))
+    }
   }, [activeDepartment])
 
   useEffect(() => {
@@ -68,25 +73,6 @@ export function Factory({
     if (activeSector == 'sector_41_active')
       setActiveSectorId(findId(sectorData, 'Участок №1'))
   }, [activeSector])
-
-  // useEffect(() => {
-  //   console.log(activeSectorId)
-  // }, [activeSectorId])
-
-  // useEffect(() => {
-  //   console.log(departmentsData.departments)
-  // }, [departmentsData])
-
-  // useEffect(() => {
-  //   console.log(sectorData)
-  // }, [sectorData])
-
-  // useEffect(() => {
-  //   if (departmentsData.length != [] && activeDepartment != 'general') {
-  //     // getSectors(setSectorData)
-  //     console.log(departmentsData.departments)
-  //   }
-  // }, [activeDepartment])
 
   return (
     <>
@@ -612,7 +598,10 @@ export function Factory({
             setSelectedDepartment('none')
           }}
           onClick={(e) => {
-            if (activeDepartment === 'general') {
+            if (
+              activeDepartment === 'general' &&
+              departmentsDataStatus == 'success'
+            ) {
               e.stopPropagation()
               setActiveDepartment('department_1')
             }
@@ -636,7 +625,10 @@ export function Factory({
           }}
           onPointerOut={() => setSelectedDepartment('none')}
           onClick={(e) => {
-            if (activeDepartment === 'general') {
+            if (
+              activeDepartment === 'general' &&
+              departmentsDataStatus == 'success'
+            ) {
               e.stopPropagation()
               setActiveDepartment('department_2')
             }
@@ -660,7 +652,10 @@ export function Factory({
           }}
           onPointerOut={() => setSelectedDepartment('none')}
           onClick={(e) => {
-            if (activeDepartment === 'general') {
+            if (
+              activeDepartment === 'general' &&
+              departmentsDataStatus == 'success'
+            ) {
               e.stopPropagation()
               setActiveDepartment('department_3')
             }
@@ -684,7 +679,10 @@ export function Factory({
           }}
           onPointerOut={() => setSelectedDepartment('none')}
           onClick={(e) => {
-            if (activeDepartment === 'general') {
+            if (
+              activeDepartment === 'general' &&
+              departmentsDataStatus == 'success'
+            ) {
               e.stopPropagation()
               setActiveDepartment('department_4')
             }

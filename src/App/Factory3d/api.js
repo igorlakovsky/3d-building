@@ -1,15 +1,28 @@
 import axios from 'axios'
+import { notification } from 'antd'
 
-export function getDepartments(setDepartments) {
+const openNotification = (message) => {
+  notification.open({
+    type: 'error',
+    message: 'Ошибка получения данных  с сервера',
+    description: message,
+    duration: 0,
+  })
+}
+
+export function getDepartments(setDepartments, setStatus) {
+  setStatus('loading')
   axios
     .get('http://192.168.1.8:4011/departments/statuses', {
       params: {},
     })
     .then(function (response) {
+      setStatus('success')
       setDepartments(response.data)
     })
     .catch(function (error) {
-      console.log(error)
+      setStatus('error')
+      openNotification(error.message)
     })
 }
 
@@ -22,7 +35,7 @@ export function getSectors(setSectors, departmentId) {
       setSectors(response.data)
     })
     .catch(function (error) {
-      console.log(error)
+      openNotification(error.message)
     })
 }
 
@@ -35,6 +48,6 @@ export function getMachines(setMachines, sectorId) {
       setMachines(response.data)
     })
     .catch(function (error) {
-      console.log(error)
+      openNotification(error.message)
     })
 }
