@@ -12,8 +12,8 @@ import { cameraPosition } from './const/cameraPosition'
 import { motion } from 'framer-motion'
 
 function View3d({ debug = false }) {
-  const [activeWorkshop, setActiveWorkshop] = useState('general')
-  const [activeFloor, setActiveFloor] = useState('none')
+  const [activeDepartment, setActiveDepartment] = useState('general')
+  const [activeSectorId, setActiveSectorId] = useState(undefined)
 
   const lightRef = useRef()
   const view3dRef = useRef()
@@ -23,19 +23,19 @@ function View3d({ debug = false }) {
     () => ({
       camera_position: folder({
         general: button(() => {
-          setActiveWorkshop('general')
+          setActiveDepartment('general')
         }),
-        workshop_1: button(() => {
-          setActiveWorkshop('workshop_1')
+        department_1: button(() => {
+          setActiveDepartment('department_1')
         }),
-        workshop_2: button(() => {
-          setActiveWorkshop('workshop_2')
+        department_2: button(() => {
+          setActiveDepartment('department_2')
         }),
-        workshop_3: button(() => {
-          setActiveWorkshop('workshop_3')
+        department_3: button(() => {
+          setActiveDepartment('department_3')
         }),
-        workshop_4: button(() => {
-          setActiveWorkshop('workshop_4')
+        department_4: button(() => {
+          setActiveDepartment('department_4')
         }),
       }),
       debug: folder({
@@ -55,7 +55,7 @@ function View3d({ debug = false }) {
     <div ref={view3dRef} className="view3d">
       <div
         className="view3d__title"
-        style={activeWorkshop != 'general' ? { opacity: 0 } : { opacity: 1 }}
+        style={activeDepartment != 'general' ? { opacity: 0 } : { opacity: 1 }}
       >
         <div className="view3d__title__name">Схема ООО “ЗМИ”</div>
         <div className="view3d__title__text">
@@ -66,12 +66,12 @@ function View3d({ debug = false }) {
       <div className="view3d__viewport" ref={viewportRef} />
       <motion.div
         className="view3d__panel"
-        animate={activeFloor != 'none' ? 'open' : 'close'}
+        animate={activeSectorId != undefined ? 'open' : 'close'}
         initial={{ width: 0 }}
         variants={{ open: { width: 400 }, close: { width: 0 } }}
         transition={{ duration: 0.3 }}
       >
-        <Panel activeFloor={activeFloor} />
+        <Panel activeSectorId={activeSectorId} />
       </motion.div>
 
       <Leva
@@ -93,7 +93,7 @@ function View3d({ debug = false }) {
 
           <MotionCamera
             initial="general"
-            animate={activeWorkshop}
+            animate={activeDepartment}
             variants={cameraPosition}
             transition={{ duration: 0.3 }}
           >
@@ -115,10 +115,10 @@ function View3d({ debug = false }) {
               scale: [0.25, 0.25, 0.25],
               rotation: [0, Math.PI - 0.1, 0],
             }}
-            activeWorkshop={activeWorkshop}
-            setActiveWorkshop={setActiveWorkshop}
-            activeFloor={activeFloor}
-            setActiveFloor={setActiveFloor}
+            activeDepartment={activeDepartment}
+            setActiveDepartment={setActiveDepartment}
+            activeSectorId={activeSectorId}
+            setActiveSectorId={setActiveSectorId}
           />
         </View>
       </Canvas>

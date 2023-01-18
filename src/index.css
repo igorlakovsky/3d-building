@@ -174,7 +174,7 @@ body {
 
 .view3d__panel__machine__container {
   box-sizing: border-box;
-  height: 110px;
+  /* height: 110px; */
   background-color: white;
   border-radius: 5px;
   padding: 20px;

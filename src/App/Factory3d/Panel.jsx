@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const machinesData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+import { getMachines } from './api'
 
-function MachineInfo() {
+function MachineInfo({ name, status }) {
   return (
     <div className="view3d__panel__machine__container">
       <div className="view3d__panel__machine__header">
         <div className="view3d__panel__machine__header__left">
-          <div className="view3d__panel__machine__header__status">ТО</div>
+          <div className="view3d__panel__machine__header__status">{status}</div>
           <div className="view3d__panel__machine__header__data">
             14.12.2022 11:47
           </div>
@@ -17,19 +17,29 @@ function MachineInfo() {
           <img src="img/info.svg" />
         </div>
       </div>
-      <div className="view3d__panel__machine__text">
-        Станок полуавтоматический сварки &quot;Карусель-2&quot;
-      </div>
+      <div className="view3d__panel__machine__text">{name}</div>
     </div>
   )
 }
 
-export default function Panel({ activeFloor }) {
+export default function Panel({ activeSectorId }) {
+  const [machinesData, setMachinesData] = useState([])
+
+  useEffect(() => {
+    if (activeSectorId != undefined) {
+      getMachines(setMachinesData, activeSectorId)
+    }
+  }, [activeSectorId])
+
+  // useEffect(() => {
+  //   console.log(machinesData)
+  // }, [machinesData])
+
   return (
     <div className="view3d__panel__container">
       <div className="view3d__panel__header">
         <div className="view3d__panel__title">
-          <div className="view3d__panel__title__name">{activeFloor}</div>
+          <div className="view3d__panel__title__name">{machinesData.name}</div>
           <div className="view3d__panel__title__info">
             <img src="img/info.svg" />
           </div>
@@ -46,8 +56,10 @@ export default function Panel({ activeFloor }) {
         </div>
       </div>
       <div className="view3d__panel__machines">
-        {machinesData.map((value, index) => {
-          return <MachineInfo key={index} />
+        {machinesData?.machines?.map((value, index) => {
+          return (
+            <MachineInfo name={value.name} status={value.status} key={index} />
+          )
         })}
       </div>
     </div>
