@@ -29,15 +29,15 @@ export function Factory({
   const [departmentsDataStatus, setDepartmentsDataStatus] = useState('idle')
   const [sectorData, setSectorData] = useState([])
 
-  const font = useLoader(FontLoader, '/Inter_Bold.json')
+  const font = useLoader(FontLoader, '/Manrope_Bold.json')
   const { nodes } = useGLTF('/factory.glb')
 
-  const selectColor = '#ffa500'
-  const selectedColor = '#ffa500'
-  const activeColor = '#ffffff'
-  const inactiveColor = '#b9b9b9'
-  const textColor = '#4d4d4d'
-  const textSelectedColor = '#000000'
+  const selectColor = '#eb5a16'
+  const selectedColor = '#df6c37'
+  const activeColor = '#dfa084'
+  const inactiveColor = '#ecd3c6'
+  const textColor = '#5c5c5c'
+  const textSelectedColor = '#222222'
 
   useEffect(() => {
     if (activeDepartment == 'general')
@@ -199,7 +199,7 @@ export function Factory({
 
           <motion.mesh
             name="Label_1"
-            position={[6, 28, 81]}
+            position={[4, 28, 81]}
             rotation={[-Math.PI / 2, 0, Math.PI / 2]}
             animate={[selectedDepartment, activeDepartment]}
             variants={{

@@ -8,6 +8,7 @@ import { Factory } from './Factory'
 import MotionCamera from './MotionCamera'
 import Panel from './Panel'
 import PropTypes from 'prop-types'
+import { Stats } from '@react-three/drei'
 import { cameraPosition } from './const/cameraPosition'
 import { motion } from 'framer-motion'
 
@@ -68,7 +69,10 @@ function View3d({ debug = false }) {
         className="view3d__panel"
         animate={activeSectorId != undefined ? 'open' : 'close'}
         initial={{ width: 0 }}
-        variants={{ open: { width: 400 }, close: { width: 0 } }}
+        variants={{
+          open: { width: 430 },
+          close: { width: 0 },
+        }}
         transition={{ duration: 0.3 }}
       >
         <Panel activeSectorId={activeSectorId} />
@@ -81,6 +85,7 @@ function View3d({ debug = false }) {
       />
 
       <Canvas eventSource={view3dRef} className="view3d__canvas">
+        <Stats className="three_stats" parent={view3dRef} />
         <View index={1} track={viewportRef}>
           <Debug
             grid={grid}
@@ -100,15 +105,19 @@ function View3d({ debug = false }) {
             <pointLight position={[0, 0, 0]} intensity={0.3} distance={600} />
           </MotionCamera>
 
-          <directionalLight ref={lightRef} position={[-25, 60, -20]} />
+          <directionalLight
+            ref={lightRef}
+            position={[-20, 60, -60]}
+            intensity={2}
+          />
 
-          {/* <ContactShadows
+          <ContactShadows
             width={12}
             height={12}
-            opacity={1.2}
-            far={4}
-            frames={1}
-          /> */}
+            opacity={1}
+            far={1}
+            // frames={30}
+          />
 
           <Factory
             props={{
