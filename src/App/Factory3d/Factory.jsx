@@ -29,7 +29,7 @@ export function Factory({
   const [departmentsDataStatus, setDepartmentsDataStatus] = useState('idle')
   const [sectorData, setSectorData] = useState([])
 
-  const font = useLoader(FontLoader, '/Manrope_Bold.json')
+  const font = useLoader(FontLoader, '/Inter_Bold.json')
   const { nodes } = useGLTF('/factory.glb')
 
   const selectColor = '#eb5a16'
