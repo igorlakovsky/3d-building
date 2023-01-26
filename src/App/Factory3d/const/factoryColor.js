@@ -8,10 +8,10 @@
 
 export const activatedColor = '#dfa084'
 export const selectedColor = '#8d8d8d'
-export const defaultColor = '#c2aea3'
+export const defaultColor = '#c98989'
 export const inactiveColor = '#ecd3c6'
 export const textColor = '#7c7c7c'
-export const activeColor = '#c2aea3'
+export const activeColor = '#8ab38a'
 export const serviceColor = '#ec8a5c'
 export const repairColor = '#df4646'
 export const textSelectedColor = '#313131'

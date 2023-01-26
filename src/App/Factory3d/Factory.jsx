@@ -38,7 +38,7 @@ const RoofMaterial = () => {
       transparent
       initial={{ color: defaultColor }}
       variants={{
-        invisible: { opacity: 0 },
+        invisible: { opacity: 0, color: inactiveColor },
         inactive: { color: inactiveColor },
         // selected: {
         //   color: selectedColor,
@@ -59,7 +59,7 @@ const RoofMaterial = () => {
             // delay: 1,
             repeat: Infinity,
             repeatType: 'reverse',
-            duration: 1.2,
+            duration: 1.1,
           },
         },
       }}
@@ -80,7 +80,7 @@ const TextMaterial = ({ sectorName }) => {
         // delay: 1,
         repeat: Infinity,
         repeatType: 'reverse',
-        duration: 1.2,
+        duration: 1.1,
       },
     },
   }
@@ -109,7 +109,7 @@ const SectorMaterial = () => {
             // delay: 1,
             repeat: Infinity,
             repeatType: 'reverse',
-            duration: 1.2,
+            duration: 1.1,
           },
         },
       }}
@@ -353,27 +353,38 @@ export function Factory({
         >
           <meshStandardMaterial color={inactiveColor} />
         </mesh>
-        <Box
-          position={[-240, 7, -60]}
-          rotation={[0, -0.7, 0]}
-          args={[8, 10, 460]}
-        >
-          <meshStandardMaterial color={inactiveColor} />
-        </Box>
-        <Box
-          position={[10, 7, -240]}
-          rotation={[0, -1.5, 0]}
-          args={[8, 10, 210]}
-        >
-          <meshStandardMaterial color={inactiveColor} />
-        </Box>
-        <Box
-          position={[-290, 7, 240]}
-          rotation={[0, 0.4, 0]}
+
+        <group position={[-10, 0, 10]} rotation={[0, 0.1, 0]}>
+          <Box
+            position={[-195, 7, -110]}
+            rotation={[0, -0.7, 0]}
+            args={[8, 10, 480]}
+          >
+            <meshStandardMaterial color={inactiveColor} />
+          </Box>
+          <Box
+            position={[59, 7, -269]}
+            rotation={[0, -1.8, 0]}
+            args={[8, 10, 210]}
+          >
+            <meshStandardMaterial color={inactiveColor} />
+          </Box>
+          <Box
+            position={[-280, 7, 230]}
+            rotation={[0, 0.4, 0]}
+            args={[8, 10, 350]}
+          >
+            <meshStandardMaterial color={inactiveColor} />
+          </Box>
+          {/* <Box
+          position={[-200, 7, 280]}
+          rotation={[0, 1.6, 0]}
           args={[8, 10, 350]}
         >
           <meshStandardMaterial color={inactiveColor} />
-        </Box>
+        </Box> */}
+        </group>
+
         <MotionConfig
           transition={{ type: 'tween', duration: 0.2, ease: 'easeOut' }}
         >

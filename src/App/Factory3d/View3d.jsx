@@ -107,7 +107,7 @@ function View3d({ debug = false }) {
 
           <directionalLight
             ref={lightRef}
-            position={[-20, 60, -60]}
+            position={[-20, 60, -30]}
             intensity={2}
           />
 
