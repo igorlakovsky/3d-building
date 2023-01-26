@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Spin } from 'antd'
 import { getMachines } from './api'
 
-function MachineInfo({ name, status }) {
+function MachineInfo({ name, status, id }) {
   return (
     <div className="view3d__panel__machine__container">
       <div className="view3d__panel__machine__header">
@@ -27,7 +27,13 @@ function MachineInfo({ name, status }) {
             14.12.2022 11:47
           </div>
         </div>
-        <div className="view3d__panel__machine__header__info">
+        <div
+          // href={'http://localhost:8080/rmu/machine/' + id}
+          className="view3d__panel__machine__header__info"
+          onClick={() => {
+            window.top.location.href = 'http://localhost:8080/rmu/machine/' + id
+          }}
+        >
           <img src="img/info.svg" />
         </div>
       </div>
@@ -81,6 +87,7 @@ export default function Panel({ activeSectorId }) {
               <MachineInfo
                 name={value.name}
                 status={value.status}
+                id={value._id}
                 key={index}
               />
             )
