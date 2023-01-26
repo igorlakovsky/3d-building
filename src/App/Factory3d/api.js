@@ -13,13 +13,14 @@ const openNotification = (message) => {
   })
 }
 
+axios.defaults.headers.common['Z-Token'] = window.localStorage.getItem('_token')
+axios.defaults.headers.common['id'] = window.localStorage.getItem('_id')
+axios.defaults.headers.common['Content-Type'] = 'application/json'
+
+// Можно что то сделать перед отправкой запроса
 axios.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-
-    config.headers['Z-Token'] = window.localStorage.getItem('_token')
-    config.headers['id'] = window.localStorage.getItem('_id')
-    console.log(config)
     return config
   },
   function (error) {
