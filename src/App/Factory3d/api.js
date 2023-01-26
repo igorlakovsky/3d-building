@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
+// eslint-disable-next-line no-undef
+const host = process.env.REACT_APP_HOST
+
 const openNotification = (message) => {
   notification.open({
     type: 'error',
@@ -13,7 +16,7 @@ const openNotification = (message) => {
 export function getDepartments(setDepartments, setStatus) {
   setStatus('loading')
   axios
-    .get('http://192.168.1.8:4011/departments/statuses', {
+    .get(host + '/departments/statuses', {
       params: {},
     })
     .then(function (response) {
@@ -28,7 +31,7 @@ export function getDepartments(setDepartments, setStatus) {
 
 export function getSectors(setSectors, departmentId) {
   axios
-    .get('http://192.168.1.8:4011/departments/sectors/' + departmentId, {
+    .get(host + '/departments/sectors/' + departmentId, {
       params: {},
     })
     .then(function (response) {
@@ -41,7 +44,7 @@ export function getSectors(setSectors, departmentId) {
 
 export function getMachines(setMachines, sectorId) {
   axios
-    .get('http://192.168.1.8:4011/departments/sectors/machines/' + sectorId, {
+    .get(host + '/departments/sectors/machines/' + sectorId, {
       params: {},
     })
     .then(function (response) {
