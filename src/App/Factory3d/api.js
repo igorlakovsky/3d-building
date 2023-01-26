@@ -13,6 +13,31 @@ const openNotification = (message) => {
   })
 }
 
+axios.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
+
+    config.headers['Z-Token'] = window.localStorage.getItem('_token')
+    config.headers['id'] = window.localStorage.getItem('_id')
+    console.log(config)
+    return config
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error)
+  }
+)
+
+const hrefLogin = '//lk.zmi59.ru/login'
+
+axios.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    location.href = hrefLogin
+    return Promise.reject(error)
+  }
+)
+
 export function getDepartments(setDepartments, setStatus) {
   setStatus('loading')
   axios
