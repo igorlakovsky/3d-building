@@ -2,13 +2,19 @@ import React, { useEffect, useState } from 'react'
 
 import { Spin } from 'antd'
 import { getMachines } from './api'
+import moment from 'moment'
 
 // eslint-disable-next-line no-undef
 const lk = process.env.REACT_APP_LK
 
-function MachineInfo({ name, status, id }) {
+function MachineInfo({ name, status, id, data }) {
   return (
-    <div className="view3d__panel__machine__container">
+    <div
+      className="view3d__panel__machine__container"
+      onClick={() => {
+        window.top.location.href = lk + '/rmu/machine/' + id
+      }}
+    >
       <div className="view3d__panel__machine__header">
         <div className="view3d__panel__machine__header__left">
           {status == 'active' ? (
@@ -27,21 +33,24 @@ function MachineInfo({ name, status, id }) {
             </div>
           ) : null}
           <div className="view3d__panel__machine__header__data">
-            14.12.2022 11:47
+            {moment(data).format('DD.MM.YYYY hh:mm')}
           </div>
         </div>
-        <div
-          className="view3d__panel__machine__header__info"
-          onClick={() => {
-            window.top.location.href = lk + '/rmu/machine/' + id
-          }}
-        >
+        <div className="view3d__panel__machine__header__info">
           <img src="img/info.svg" />
         </div>
       </div>
       <div className="view3d__panel__machine__text">{name}</div>
     </div>
   )
+}
+
+const getMachinesNumber = (data, status) => {
+  let count = 0
+  data?.machines.forEach((machine) => {
+    if (machine.status == status) count++
+  })
+  return count
 }
 
 export default function Panel({ activeSectorId }) {
@@ -71,15 +80,15 @@ export default function Panel({ activeSectorId }) {
           <div className="view3d__panel__indicators">
             <div className="view3d__panel__red_indicator">
               <img src="img/red_indicator.png" />
-              {2}
+              {getMachinesNumber(machinesData, 'repair')}
             </div>
             <div className="view3d__panel__yellow_indicator">
               <img src="img/yellow_indicator.png" />
-              {1}
+              {getMachinesNumber(machinesData, 'service')}
             </div>
             <div className="view3d__panel__green_indicator">
               <img src="img/green_indicator.png" />
-              {29}
+              {getMachinesNumber(machinesData, 'active')}
             </div>
           </div>
         </div>
@@ -91,6 +100,7 @@ export default function Panel({ activeSectorId }) {
                 status={value.status}
                 id={value._id}
                 key={index}
+                data={value.updatedAt}
               />
             )
           })}

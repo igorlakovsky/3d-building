@@ -212,6 +212,7 @@ body {
 }
 
 .view3d__panel__machine__container {
+  cursor: pointer;
   box-sizing: border-box;
   background-color: white;
   border-radius: 5px;
