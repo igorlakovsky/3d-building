@@ -13,21 +13,12 @@ const openNotification = (message) => {
   })
 }
 
-axios.defaults.headers.common['Z-Token'] = window.localStorage.getItem('_token')
-axios.defaults.headers.common['id'] = window.localStorage.getItem('_id')
-axios.defaults.headers.common['Content-Type'] = 'application/json'
+const urlSearchParams = new URLSearchParams(window?.location?.search)
+const { id, token } = Object.fromEntries(urlSearchParams?.entries())
 
-// Можно что то сделать перед отправкой запроса
-axios.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
-    return config
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error)
-  }
-)
+axios.defaults.headers.common['Z-Token'] = token
+axios.defaults.headers.common['id'] = id
+axios.defaults.headers.common['Content-Type'] = 'application/json'
 
 const hrefLogin = '//lk.zmi59.ru/login'
 
