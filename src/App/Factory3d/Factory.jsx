@@ -1,4 +1,4 @@
-import { Plane, useGLTF } from '@react-three/drei'
+import { Box, Plane, useGLTF } from '@react-three/drei'
 import React, { useEffect, useState } from 'react'
 import {
   activatedColor,
@@ -11,6 +11,7 @@ import {
   textColor,
   textRepairColor,
   textSelectedColor,
+  textServiceColor,
 } from './const/factoryColor'
 import { getDepartments, getSectors } from './api'
 
@@ -58,7 +59,7 @@ const RoofMaterial = () => {
             // delay: 1,
             repeat: Infinity,
             repeatType: 'reverse',
-            duration: 0.8,
+            duration: 1.2,
           },
         },
       }}
@@ -66,26 +67,29 @@ const RoofMaterial = () => {
   )
 }
 
-const TextMaterial = () => {
+const TextMaterial = ({ sectorName }) => {
+  const variants = {
+    invisible: { opacity: 0 },
+    inactive: { opacity: 0 },
+    selected: { color: textSelectedColor },
+    activated: { color: textSelectedColor },
+    service: { color: textServiceColor },
+    repair: {
+      color: textRepairColor,
+      transition: {
+        // delay: 1,
+        repeat: Infinity,
+        repeatType: 'reverse',
+        duration: 1.2,
+      },
+    },
+  }
+  variants[sectorName + '_active'] = { color: textSelectedColor }
   return (
     <motion.meshStandardMaterial
       transparent
       initial={{ color: textColor }}
-      variants={{
-        invisible: { opacity: 0 },
-        inactive: { opacity: 0 },
-        selected: { color: textSelectedColor },
-        activated: { color: textSelectedColor },
-        repair: {
-          color: textRepairColor,
-          transition: {
-            // delay: 1,
-            repeat: Infinity,
-            repeatType: 'reverse',
-            duration: 0.8,
-          },
-        },
-      }}
+      variants={variants}
     />
   )
 }
@@ -105,7 +109,7 @@ const SectorMaterial = () => {
             // delay: 1,
             repeat: Infinity,
             repeatType: 'reverse',
-            duration: 0.8,
+            duration: 1.2,
           },
         },
       }}
@@ -349,6 +353,27 @@ export function Factory({
         >
           <meshStandardMaterial color={inactiveColor} />
         </mesh>
+        <Box
+          position={[-240, 7, -60]}
+          rotation={[0, -0.7, 0]}
+          args={[8, 10, 460]}
+        >
+          <meshStandardMaterial color={inactiveColor} />
+        </Box>
+        <Box
+          position={[10, 7, -240]}
+          rotation={[0, -1.5, 0]}
+          args={[8, 10, 210]}
+        >
+          <meshStandardMaterial color={inactiveColor} />
+        </Box>
+        <Box
+          position={[-290, 7, 240]}
+          rotation={[0, 0.4, 0]}
+          args={[8, 10, 350]}
+        >
+          <meshStandardMaterial color={inactiveColor} />
+        </Box>
         <MotionConfig
           transition={{ type: 'tween', duration: 0.2, ease: 'easeOut' }}
         >
@@ -441,14 +466,14 @@ export function Factory({
           </motion.mesh>
           <motion.mesh
             name="Label_4"
-            position={[-16, 32, -62]}
+            position={[-18, 32, -62]}
             rotation={[-Math.PI / 2, 0, Math.PI / 2]}
             animate={[departmentsStatus.department_4, selectedDepartment]}
             variants={{
-              department_4_selected: { y: 40 },
+              department_4_selected: { y: 38 },
             }}
           >
-            <textGeometry args={['Цех №4', { font, size: 8, height: 0.1 }]} />
+            <textGeometry args={['Цех №4', { font, size: 9, height: 0.1 }]} />
             <TextMaterial />
           </motion.mesh>
         </MotionConfig>
@@ -459,7 +484,7 @@ export function Factory({
           <motion.mesh
             name="Sector_11"
             geometry={nodes.Floor_11.geometry}
-            position={[-9.58, -0.25, 3.15]}
+            position={[-9.58, 1.25, 3.15]}
             rotation={[Math.PI, 0, 0]}
             visible={activeDepartment === 'department_1'}
             animate={[sectorsStatus.sector_11, activeSector, selectedSector]}
@@ -510,13 +535,13 @@ export function Factory({
             <textGeometry
               args={['Участок №1', { font, size: 4, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_11'} />
           </motion.mesh>
 
           <motion.mesh
             name="Sector_12"
             geometry={nodes.Floor_12.geometry}
-            position={[-13.08, -0.25, 50.03]}
+            position={[-13.08, 1.25, 50.03]}
             rotation={[Math.PI, 0, 0]}
             visible={activeDepartment === 'department_1'}
             animate={[sectorsStatus.sector_12, activeSector, selectedSector]}
@@ -567,13 +592,13 @@ export function Factory({
             <textGeometry
               args={['Участок №2', { font, size: 4, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_12'} />
           </motion.mesh>
 
           <motion.mesh
             name="Sector_13"
             geometry={nodes.Floor_13.geometry}
-            position={[3.83, -0.25, 82.4]}
+            position={[3.83, 1.25, 82.4]}
             rotation={[Math.PI, 0, 0]}
             visible={activeDepartment === 'department_1'}
             animate={[sectorsStatus.sector_13, activeSector, selectedSector]}
@@ -624,13 +649,13 @@ export function Factory({
             <textGeometry
               args={['Участок №3', { font, size: 6, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_13'} />
           </motion.mesh>
 
           <motion.mesh
             name="Sector_14"
             geometry={nodes.Floor_14.geometry}
-            position={[-1.76, -0.25, -17.96]}
+            position={[-1.76, 1.25, -17.96]}
             rotation={[Math.PI, 0, 0]}
             visible={activeDepartment === 'department_1'}
             animate={[sectorsStatus.sector_14, activeSector, selectedSector]}
@@ -681,7 +706,7 @@ export function Factory({
             <textGeometry
               args={['Участок №4', { font, size: 5, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_14'} />
           </motion.mesh>
           <motion.mesh
             name="Label_14_2"
@@ -698,13 +723,13 @@ export function Factory({
             <textGeometry
               args={['Участок №4', { font, size: 3, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_14'} />
           </motion.mesh>
 
           <motion.mesh
             name="Sector_21"
             geometry={nodes.Floor_2.geometry}
-            position={[8.47, -0.25, -106.61]}
+            position={[8.47, 1.25, -106.61]}
             rotation={[Math.PI, 0, 0]}
             visible={activeDepartment === 'department_2'}
             animate={[sectorsStatus.sector_21, activeSector, selectedSector]}
@@ -755,13 +780,13 @@ export function Factory({
             <textGeometry
               args={['Участок №1', { font, size: 6, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_21'} />
           </motion.mesh>
 
           <motion.mesh
             name="Sector_31"
             geometry={nodes.Floor_31.geometry}
-            position={[-155.03, -0.25, 109.67]}
+            position={[-155.03, 1.25, 109.67]}
             rotation={[Math.PI, Math.PI / 4, 0]}
             visible={activeDepartment === 'department_3'}
             animate={[sectorsStatus.sector_31, activeSector, selectedSector]}
@@ -812,13 +837,13 @@ export function Factory({
             <textGeometry
               args={['Участок №1', { font, size: 4.5, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_31'} />
           </motion.mesh>
 
           <motion.mesh
             name="Sector_32"
             geometry={nodes.Floor_32.geometry}
-            position={[-97.98, -0.25, 51.74]}
+            position={[-97.98, 1.25, 51.74]}
             rotation={[Math.PI, Math.PI / 4, 0]}
             visible={activeDepartment === 'department_3'}
             animate={[sectorsStatus.sector_32, activeSector, selectedSector]}
@@ -869,13 +894,13 @@ export function Factory({
             <textGeometry
               args={['Участок №2', { font, size: 4.5, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_32'} />
           </motion.mesh>
 
           <motion.mesh
             name="Sector_33"
             geometry={nodes.Floor_33.geometry}
-            position={[-42.01, -0.25, 64.78]}
+            position={[-42.01, 1.25, 64.78]}
             rotation={[Math.PI, 0, 0]}
             visible={activeDepartment === 'department_3'}
             animate={[sectorsStatus.sector_33, activeSector, selectedSector]}
@@ -926,13 +951,13 @@ export function Factory({
             <textGeometry
               args={['Участок №3', { font, size: 4, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_33'} />
           </motion.mesh>
 
           <motion.mesh
             name="Sector_41"
             geometry={nodes.Floor_41.geometry}
-            position={[-21.34, -0.25, -24.12]}
+            position={[-21.34, 1.25, -24.12]}
             rotation={[Math.PI, 0, 0]}
             visible={activeDepartment === 'department_4'}
             animate={[sectorsStatus.sector_41, activeSector, selectedSector]}
@@ -983,7 +1008,7 @@ export function Factory({
             <textGeometry
               args={['Участок №1', { font, size: 5, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_41'} />
           </motion.mesh>
           <motion.mesh
             name="Label_41_2"
@@ -1000,7 +1025,7 @@ export function Factory({
             <textGeometry
               args={['Участок №1', { font, size: 2.8, height: 0.1 }]}
             />
-            <TextMaterial />
+            <TextMaterial sectorName={'sector_41'} />
           </motion.mesh>
         </MotionConfig>
 

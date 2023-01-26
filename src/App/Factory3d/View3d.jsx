@@ -85,7 +85,7 @@ function View3d({ debug = false }) {
       />
 
       <Canvas eventSource={view3dRef} className="view3d__canvas">
-        <Stats className="three_stats" parent={view3dRef} />
+        {/* <Stats className="three_stats" parent={view3dRef} /> */}
         <View index={1} track={viewportRef}>
           <Debug
             grid={grid}
@@ -112,10 +112,11 @@ function View3d({ debug = false }) {
           />
 
           <ContactShadows
-            width={12}
-            height={12}
+            width={20}
+            height={20}
             opacity={1}
             far={1}
+            blur={0.6}
             // frames={30}
           />
 

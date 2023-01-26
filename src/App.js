@@ -5,7 +5,7 @@ import View3d from './App/Factory3d/View3d'
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <View3d debug={false} />
     </div>
   )
