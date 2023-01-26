@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Spin } from 'antd'
 import { getMachines } from './api'
 
+// eslint-disable-next-line no-undef
+const lk = process.env.REACT_APP_LK
+
 function MachineInfo({ name, status, id }) {
   return (
     <div className="view3d__panel__machine__container">
@@ -28,10 +31,9 @@ function MachineInfo({ name, status, id }) {
           </div>
         </div>
         <div
-          // href={'http://localhost:8080/rmu/machine/' + id}
           className="view3d__panel__machine__header__info"
           onClick={() => {
-            window.top.location.href = 'http://localhost:8080/rmu/machine/' + id
+            window.top.location.href = lk + '/rmu/machine/' + id
           }}
         >
           <img src="img/info.svg" />

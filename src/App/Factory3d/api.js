@@ -13,8 +13,6 @@ const openNotification = (message) => {
   })
 }
 
-console.log('test')
-
 const urlSearchParams = new URLSearchParams(window?.location?.search)
 const { id, token } = Object.fromEntries(urlSearchParams?.entries())
 
