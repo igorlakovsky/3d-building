@@ -270,6 +270,14 @@ body {
   line-height: 130%;
 }
 
+.view3d__panel__machine__code {
+  padding-top: 4px;
+  font-family: 'Manrope';
+  font-size: 14px;
+  color: #b8b2b2;
+  line-height: 130%;
+}
+
 .view3d__canvas {
   position: absolute !important;
 }

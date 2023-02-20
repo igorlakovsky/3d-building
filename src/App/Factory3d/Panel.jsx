@@ -7,7 +7,7 @@ import moment from 'moment'
 // eslint-disable-next-line no-undef
 const lk = process.env.REACT_APP_LK
 
-function MachineInfo({ name, status, id, data }) {
+function MachineInfo({ name, status, id, data, code }) {
   return (
     <div
       className="view3d__panel__machine__container"
@@ -41,6 +41,7 @@ function MachineInfo({ name, status, id, data }) {
         </div>
       </div>
       <div className="view3d__panel__machine__text">{name}</div>
+      <div className="view3d__panel__machine__code"># {code}</div>
     </div>
   )
 }
@@ -79,15 +80,15 @@ export default function Panel({ activeSectorId }) {
           </div>
           <div className="view3d__panel__indicators">
             <div className="view3d__panel__red_indicator">
-              <img src="img/red_indicator.png" />
+              <img src="img/red_indicator.svg" />
               {getMachinesNumber(machinesData, 'repair')}
             </div>
             <div className="view3d__panel__yellow_indicator">
-              <img src="img/yellow_indicator.png" />
+              <img src="img/yellow_indicator.svg" />
               {getMachinesNumber(machinesData, 'service')}
             </div>
             <div className="view3d__panel__green_indicator">
-              <img src="img/green_indicator.png" />
+              <img src="img/green_indicator.svg" />
               {getMachinesNumber(machinesData, 'active')}
             </div>
           </div>
@@ -96,11 +97,12 @@ export default function Panel({ activeSectorId }) {
           {machinesData?.machines?.map((value, index) => {
             return (
               <MachineInfo
+                key={index}
                 name={value.name}
                 status={value.status}
                 id={value._id}
-                key={index}
                 data={value.updatedAt}
+                code={value.code}
               />
             )
           })}

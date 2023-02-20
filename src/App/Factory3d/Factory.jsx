@@ -354,35 +354,35 @@ export function Factory({
           <meshStandardMaterial color={inactiveColor} />
         </mesh>
 
-        <group position={[-10, 0, 10]} rotation={[0, 0.1, 0]}>
+        <group position={[-20, 0, -40]} rotation={[0, 0, 0]}>
           <Box
-            position={[-195, 7, -110]}
-            rotation={[0, -0.7, 0]}
-            args={[8, 10, 480]}
+            position={[50, 7, -200]}
+            rotation={[0, Math.PI / 2, 0]}
+            args={[8, 10, 400]}
           >
             <meshStandardMaterial color={inactiveColor} />
           </Box>
           <Box
-            position={[59, 7, -269]}
-            rotation={[0, -1.8, 0]}
-            args={[8, 10, 210]}
+            position={[-150, 7, -105]}
+            rotation={[0, Math.PI, 0]}
+            args={[8, 10, 200]}
           >
             <meshStandardMaterial color={inactiveColor} />
           </Box>
           <Box
-            position={[-280, 7, 230]}
-            rotation={[0, 0.4, 0]}
-            args={[8, 10, 350]}
+            position={[-200, 7, -9]}
+            rotation={[0, Math.PI / 2, 0]}
+            args={[8, 10, 100]}
           >
             <meshStandardMaterial color={inactiveColor} />
           </Box>
-          {/* <Box
-          position={[-200, 7, 280]}
-          rotation={[0, 1.6, 0]}
-          args={[8, 10, 350]}
-        >
-          <meshStandardMaterial color={inactiveColor} />
-        </Box> */}
+          <Box
+            position={[-250, 7, 237]}
+            rotation={[0, Math.PI, 0]}
+            args={[8, 10, 500]}
+          >
+            <meshStandardMaterial color={inactiveColor} />
+          </Box>
         </group>
 
         <MotionConfig
