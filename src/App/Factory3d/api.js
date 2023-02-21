@@ -14,7 +14,9 @@ const openNotification = (message) => {
 }
 
 const urlSearchParams = new URLSearchParams(window?.location?.search)
-const { id, token } = Object.fromEntries(urlSearchParams?.entries())
+const { id, token, machineId } = Object.fromEntries(urlSearchParams?.entries())
+
+export { machineId }
 
 axios.defaults.headers.common['Z-Token'] = token
 axios.defaults.headers.common['id'] = id
@@ -66,6 +68,17 @@ export function getMachines(setMachines, sectorId) {
     })
     .then(function (response) {
       setMachines(response.data)
+    })
+    .catch(function (error) {
+      openNotification(error.message)
+    })
+}
+
+export function getMachine(setMachine, machineId) {
+  axios
+    .get(host + '/eqs/' + machineId)
+    .then(function (response) {
+      setMachine(response.data)
     })
     .catch(function (error) {
       openNotification(error.message)

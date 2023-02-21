@@ -13,12 +13,13 @@ import {
   textSelectedColor,
   textServiceColor,
 } from './const/factoryColor'
-import { getDepartments, getSectors } from './api'
+import { getDepartments, getMachine, getSectors } from './api'
 
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { MotionConfig } from 'framer-motion'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 import { extend } from '@react-three/fiber'
+import { machineId } from './api'
 import { motion } from 'framer-motion-3d'
 import { useLoader } from '@react-three/fiber'
 
@@ -117,7 +118,7 @@ const SectorMaterial = () => {
   )
 }
 
-export function Factory({
+export default function Factory({
   props,
   activeDepartment,
   setActiveDepartment,
@@ -154,6 +155,9 @@ export function Factory({
     sector_41: 'auto',
   })
 
+  const [preset, setPreset] = useState(false)
+  const [presetMachine, setPresetMachine] = useState(null)
+
   useEffect(() => {
     if (activeDepartment == 'general')
       getDepartments(setDepartmentsData, setDepartmentsDataStatus)
@@ -183,24 +187,28 @@ export function Factory({
   }, [activeDepartment])
 
   useEffect(() => {
-    if (activeSector == 'sector_11_active')
-      setActiveSectorId(findId(sectorsData, 'Участок №1'))
-    if (activeSector == 'sector_12_active')
-      setActiveSectorId(findId(sectorsData, 'Участок №2'))
-    if (activeSector == 'sector_13_active')
-      setActiveSectorId(findId(sectorsData, 'Участок №3'))
-    if (activeSector == 'sector_14_active')
-      setActiveSectorId(findId(sectorsData, 'Участок №4'))
-    if (activeSector == 'sector_21_active')
-      setActiveSectorId(findId(sectorsData, 'Участок №1'))
-    if (activeSector == 'sector_31_active')
-      setActiveSectorId(findId(sectorsData, 'Участок №1'))
-    if (activeSector == 'sector_32_active')
-      setActiveSectorId(findId(sectorsData, 'Участок №2'))
-    if (activeSector == 'sector_33_active')
-      setActiveSectorId(findId(sectorsData, 'Участок №3'))
-    if (activeSector == 'sector_41_active')
-      setActiveSectorId(findId(sectorsData, 'Участок №1'))
+    if (presetMachine == null) {
+      if (activeSector == 'sector_11_active')
+        setActiveSectorId(findId(sectorsData, 'Участок №1'))
+      if (activeSector == 'sector_12_active')
+        setActiveSectorId(findId(sectorsData, 'Участок №2'))
+      if (activeSector == 'sector_13_active')
+        setActiveSectorId(findId(sectorsData, 'Участок №3'))
+      if (activeSector == 'sector_14_active')
+        setActiveSectorId(findId(sectorsData, 'Участок №4'))
+      if (activeSector == 'sector_21_active')
+        setActiveSectorId(findId(sectorsData, 'Участок №1'))
+      if (activeSector == 'sector_31_active')
+        setActiveSectorId(findId(sectorsData, 'Участок №1'))
+      if (activeSector == 'sector_32_active')
+        setActiveSectorId(findId(sectorsData, 'Участок №2'))
+      if (activeSector == 'sector_33_active')
+        setActiveSectorId(findId(sectorsData, 'Участок №3'))
+      if (activeSector == 'sector_41_active')
+        setActiveSectorId(findId(sectorsData, 'Участок №1'))
+    } else {
+      setPresetMachine(null)
+    }
   }, [activeSector])
 
   useEffect(() => {
@@ -304,6 +312,77 @@ export function Factory({
         }))
     }
   }, [sectorsStatus, sectorsData])
+
+  useEffect(() => {
+    if (
+      departmentsDataStatus == 'success' &&
+      machineId != null &&
+      presetMachine == null &&
+      preset == false
+    ) {
+      getMachine(setPresetMachine, machineId)
+    }
+
+    if (presetMachine != null && preset == false) {
+      const sectorName = presetMachine?.department?.sectors?.find((value) => {
+        return value._id == presetMachine.sector
+      }).name
+
+      setActiveSectorId(presetMachine.sector)
+
+      if (presetMachine.department.name === 'цех №1') {
+        setActiveDepartment('department_1')
+        setDepartmentsStatus({
+          department_1: 'invisible',
+          department_2: 'inactive',
+          department_3: 'inactive',
+          department_4: 'inactive',
+        })
+
+        if (sectorName == 'Участок №1') setActiveSector('sector_11_active')
+        if (sectorName == 'Участок №2') setActiveSector('sector_12_active')
+        if (sectorName == 'Участок №3') setActiveSector('sector_13_active')
+        if (sectorName == 'Участок №4') setActiveSector('sector_14_active')
+      }
+      if (presetMachine.department.name === 'цех №2') {
+        setActiveDepartment('department_2')
+        setDepartmentsStatus({
+          department_1: 'inactive',
+          department_2: 'invisible',
+          department_3: 'inactive',
+          department_4: 'inactive',
+        })
+
+        if (sectorName == 'Участок №1') setActiveSector('sector_21_active')
+      }
+      if (presetMachine.department.name === 'цех №3') {
+        setActiveDepartment('department_3')
+        setDepartmentsStatus({
+          department_1: 'inactive',
+          department_2: 'inactive',
+          department_3: 'invisible',
+          department_4: 'inactive',
+        })
+
+        if (sectorName == 'Участок №1') setActiveSector('sector_31_active')
+        if (sectorName == 'Участок №2') setActiveSector('sector_32_active')
+        if (sectorName == 'Участок №3') setActiveSector('sector_33_active')
+      }
+      if (presetMachine.department.name === 'цех №4') {
+        setActiveDepartment('department_4')
+        setDepartmentsStatus({
+          department_1: 'inactive',
+          department_2: 'inactive',
+          department_3: 'inactive',
+          department_4: 'invisible',
+        })
+
+        if (sectorName == 'Участок №1') setActiveSector('sector_41_active')
+      }
+
+      setPreset(true)
+    }
+  }, [departmentsDataStatus, presetMachine])
 
   return (
     <>

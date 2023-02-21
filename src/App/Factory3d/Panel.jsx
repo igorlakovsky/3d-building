@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { Spin } from 'antd'
 import { getMachines } from './api'
+import { machineId } from './api'
 import moment from 'moment'
 
 // eslint-disable-next-line no-undef
 const lk = process.env.REACT_APP_LK
 
-function MachineInfo({ name, status, id, data, code }) {
+function MachineInfo({ name, status, id, data, code, scroll, setScroll }) {
+  const ref = useRef()
+
+  useEffect(() => {
+    if (machineId == id && scroll == false) {
+      ref.current.scrollIntoView({ behavior: 'smooth' })
+      setScroll(true)
+    }
+  }, [])
+
   return (
     <div
+      ref={ref}
       className="view3d__panel__machine__container"
+      style={
+        machineId == id && scroll == false
+          ? { border: '2px solid rgb(42 207 55)' }
+          : { border: '2px solid white' }
+      }
       onClick={() => {
         window.top.location.href = lk + '/rmu/machine/' + id
       }}
@@ -56,6 +72,7 @@ const getMachinesNumber = (data, status) => {
 
 export default function Panel({ activeSectorId }) {
   const [machinesData, setMachinesData] = useState(null)
+  const [scroll, setScroll] = useState(false)
 
   useEffect(() => {
     if (activeSectorId != undefined) {
@@ -103,6 +120,8 @@ export default function Panel({ activeSectorId }) {
                 id={value._id}
                 data={value.updatedAt}
                 code={value.code}
+                scroll={scroll}
+                setScroll={setScroll}
               />
             )
           })}

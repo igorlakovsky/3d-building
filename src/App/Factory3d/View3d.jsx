@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { Canvas } from '@react-three/fiber'
 import Debug from './Debug'
-import { Factory } from './Factory'
+import Factory from './Factory'
 import MotionCamera from './MotionCamera'
 import Panel from './Panel'
 import PropTypes from 'prop-types'
@@ -83,7 +83,6 @@ function View3d({ debug = false }) {
         hideCopyButton
         hidden={!debug}
       />
-
       <Canvas eventSource={view3dRef} className="view3d__canvas">
         {/* <Stats className="three_stats" parent={view3dRef} /> */}
         <View index={1} track={viewportRef}>
@@ -117,7 +116,6 @@ function View3d({ debug = false }) {
             opacity={1}
             far={1}
             blur={0.6}
-            // frames={30}
           />
 
           <Factory
